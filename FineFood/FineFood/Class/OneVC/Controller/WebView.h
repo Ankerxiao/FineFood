@@ -1,5 +1,5 @@
 //
-//  ScrollViewDetailOneVC.h
+//  WebView.h
 //  FineFood
 //
 //  Created by Anker Xiao on 16/7/17.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScrollViewDetailOneVC : UIViewController
-@property (nonatomic,copy) NSString *urlStr;
+@interface WebView : UIViewController
+@property (nonatomic,copy) NSString *strUrl;
 @end

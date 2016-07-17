@@ -10,6 +10,7 @@
 		993B026A9C608A4841089914 /* libPods-FineFood.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7EC5341668CB0D7F70CB42 /* libPods-FineFood.a */; };
 		B851A3621D3B1FF70080E5DB /* ScrollViewDetailOneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B851A3611D3B1FF70080E5DB /* ScrollViewDetailOneVC.m */; };
 		B851A3651D3B2D270080E5DB /* CollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B851A3641D3B2D270080E5DB /* CollectionModel.m */; };
+		B851A3681D3BADA60080E5DB /* WebView.m in Sources */ = {isa = PBXBuildFile; fileRef = B851A3671D3BADA60080E5DB /* WebView.m */; };
 		B8C367BF1D3A337500C94890 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C367BE1D3A337500C94890 /* main.m */; };
 		B8C367C21D3A337500C94890 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C367C11D3A337500C94890 /* AppDelegate.m */; };
 		B8C367C51D3A337500C94890 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C367C41D3A337500C94890 /* ViewController.m */; };
@@ -37,6 +38,8 @@
 		B851A3611D3B1FF70080E5DB /* ScrollViewDetailOneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewDetailOneVC.m; sourceTree = "<group>"; };
 		B851A3631D3B2D270080E5DB /* CollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionModel.h; sourceTree = "<group>"; };
 		B851A3641D3B2D270080E5DB /* CollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionModel.m; sourceTree = "<group>"; };
+		B851A3661D3BADA60080E5DB /* WebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebView.h; sourceTree = "<group>"; };
+		B851A3671D3BADA60080E5DB /* WebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebView.m; sourceTree = "<group>"; };
 		B8C367BA1D3A337500C94890 /* FineFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FineFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C367BE1D3A337500C94890 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B8C367C01D3A337500C94890 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -211,6 +214,8 @@
 				B8C367EF1D3A368900C94890 /* OneVC.m */,
 				B851A3601D3B1FF70080E5DB /* ScrollViewDetailOneVC.h */,
 				B851A3611D3B1FF70080E5DB /* ScrollViewDetailOneVC.m */,
+				B851A3661D3BADA60080E5DB /* WebView.h */,
+				B851A3671D3BADA60080E5DB /* WebView.m */,
 				B8C368051D3A405A00C94890 /* HTTPServiceSession.h */,
 				B8C368061D3A405A00C94890 /* HTTPServiceSession.m */,
 			);
@@ -442,6 +447,7 @@
 				B8C367F61D3A36A400C94890 /* ThreeVC.m in Sources */,
 				B8C368011D3A3B8A00C94890 /* DataModel.m in Sources */,
 				B8C367D81D3A356D00C94890 /* CreateTabBar.m in Sources */,
+				B851A3681D3BADA60080E5DB /* WebView.m in Sources */,
 				B8C367C21D3A337500C94890 /* AppDelegate.m in Sources */,
 				B8C367F11D3A368900C94890 /* OneVC.m in Sources */,
 				B8C367FB1D3A36B700C94890 /* TwoVC.m in Sources */,

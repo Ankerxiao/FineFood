@@ -13,6 +13,8 @@
 #import "HTTPServiceSession.h"
 #import "ScrollViewDetailOneVC.h"
 #import "CollectionModel.h"
+#import "ScrollViewDetailOneVC.h"
+#import "WebView.h"
 
 #define SCREENW [UIScreen mainScreen].bounds.size.width
 #define SCREENH [UIScreen mainScreen].bounds.size.height
@@ -30,6 +32,10 @@
 #define Collection4_API @"http://api.guozhoumoapp.com/v1/channels/13/items?limit=20&offset=0"
 //周边游
 #define Collection5_API @"http://api.guozhoumoapp.com/v1/channels/14/items?limit=20&offset=0"
+
+#define XIACHUFANG_API @"http://api.guozhoumoapp.com/v1/collections/3/posts?gender=1&generation=0&limit=20&offset=0"
+#define TIYANKE_API @"http://api.guozhoumoapp.com/v1/collections/4/posts?gender=1&generation=0&limit=20&offset=0"
+#define WEEKDAY_API @"http://api.guozhoumoapp.com/v1/collections/2/posts?gender=1&generation=0&limit=20&offset=0"
 
 @interface OneVC () <UIScrollViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -67,26 +73,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-//    UIButton *bbb = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-//    bbb.backgroundColor = [UIColor blackColor];
-//    [bbb addTarget:self action:@selector(wo:) forControlEvents:UIControlEventTouchDragOutside];
-//    [self.view addSubview:bbb];
-
-    
-    
     // Do any additional setup after loading the view from its nib.
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.barTintColor = [UIColor brownColor];//设置导航栏颜色
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];//设置标题颜色
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;//设置状态栏的颜色(前景色)为白色
-    
+
     //btnlist的初始化
     [self initWithBtnListView];
     
     //大的ScrollView加到self.view上
+    self.bigScrollView.frame = CGRectMake(0, 30, SCREENW, SCREENH-_btnListView.frame.size.height);
     [self.view addSubview:self.bigScrollView];
     
     //ScrollView的初始化
@@ -122,7 +121,6 @@
     _btnListView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENW, 30)];
     NSArray *btnTitle = @[@"精选",@"周末逛店",@"尝美食",@"体验课",@"周边游"];
     NSInteger count = btnTitle.count;
-    
     for(int i=0;i<count;i++)
     {
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(i*SCREENW/5, 0, SCREENW/5, 30)];
@@ -135,14 +133,11 @@
             //默认第一个按钮被选中
             [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
             _button = btn;
-            btn.selected = YES;
         }
         [btn addTarget:self action:@selector(changeCollectionView:) forControlEvents:UIControlEventTouchUpInside];
-        
         [_btnListView addSubview:btn];
     }
-        [self.view addSubview:_btnListView];
-    
+    [self.view addSubview:_btnListView];
     _bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_btnListView.frame)-2, SCREENW/5, 2)];
     _bottomLine.backgroundColor = [UIColor redColor];
     [self.view addSubview:_bottomLine];
@@ -150,14 +145,33 @@
 
 - (void)changeCollectionView:(UIButton *)btn
 {
-    
-    NSLog(@"------------");
     [_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    _bigScrollView.contentOffset = CGPointMake((btn.tag-20)*SCREENW, 0);
     [UIView animateWithDuration:0.5 animations:^{
+        _bigScrollView.contentOffset = CGPointMake((btn.tag-20)*SCREENW, 0);
         _bottomLine.frame = CGRectMake(btn.frame.origin.x, CGRectGetMaxY(_btnListView.frame)-2, SCREENW/5, 2);
     }];
+    _button = btn;
+    if(btn.tag == 20)
+    {
+        [self getCollectionData:Collection1_API];
+    }
+    if(btn.tag == 21)
+    {
+        [self getCollectionData:Collection2_API];
+    }
+    if(btn.tag == 22)
+    {
+        [self getCollectionData:Collection3_API];
+    }
+    if(btn.tag == 23)
+    {
+        [self getCollectionData:Collection4_API];
+    }
+    if(btn.tag == 24)
+    {
+        [self getCollectionData:Collection5_API];
+    }
 }
 
 #pragma mark 滚动视图ScrollView
@@ -195,7 +209,7 @@
 - (void)updataInScrollView
 {
     NSInteger count = _scrollDataArray.count;
-    for(int i=0;i<count;i++)
+    for(int i=0;i<count+2;i++)
     {
         if(i == 0)
         {
@@ -204,21 +218,24 @@
             [imageV sd_setImageWithURL:[NSURL URLWithString:model.image_url]];
             [_scrollView addSubview:imageV];
         }
-        if(i == count-1)
+        else if(i == count+1)
         {
             DataModel *model = _scrollDataArray[0][0];
             UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake((count+1)*SCREENW, 0, SCREENW, SCROLL_H)];
             [imageV sd_setImageWithURL:[NSURL URLWithString:model.image_url]];
             [_scrollView addSubview:imageV];
         }
-        DataModel *model = _scrollDataArray[i][0];
-        UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake((i+1)*SCREENW, 0, SCREENW, SCROLL_H)];
-        [imageV sd_setImageWithURL:[NSURL URLWithString:model.image_url]];
-        imageV.userInteractionEnabled = YES;
-        imageV.tag = 1+i;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImageVInScrollView:)];
-        [imageV addGestureRecognizer:tap];
-        [_scrollView addSubview:imageV];
+        else
+        {
+            DataModel *model = _scrollDataArray[i-1][0];
+            UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(i*SCREENW, 0, SCREENW, SCROLL_H)];
+            [imageV sd_setImageWithURL:[NSURL URLWithString:model.image_url]];
+            imageV.userInteractionEnabled = YES;
+            imageV.tag = i;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImageVInScrollView:)];
+            [imageV addGestureRecognizer:tap];
+            [_scrollView addSubview:imageV];
+        }
     }
     _scrollView.contentOffset = CGPointMake(SCREENW, 0);
     _scrollView.contentSize = CGSizeMake((_scrollDataArray.count+2)*SCREENW, 0);
@@ -301,18 +318,21 @@
 
 - (void)tapImageVInScrollView:(UITapGestureRecognizer *)tap
 {
+    ScrollViewDetailOneVC *detailVC = [[ScrollViewDetailOneVC alloc] init];
     if(tap.view.tag == 1)
     {
-        NSLog(@"1");
+        detailVC.urlStr = XIACHUFANG_API;
     }
     if(tap.view.tag == 2)
     {
-        NSLog(@"2");
+        detailVC.urlStr = TIYANKE_API;
     }
     if(tap.view.tag == 3)
     {
-        NSLog(@"3");
+        detailVC.urlStr = WEEKDAY_API;
     }
+    detailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 
@@ -324,7 +344,7 @@
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.itemSize = CGSizeMake(SCREENW, 210);
         flowLayout.minimumLineSpacing = 20;
-        UICollectionView *collec = [[UICollectionView alloc] initWithFrame:CGRectMake(i*SCREENW, 30, SCREENW, SCREENH-_btnListView.frame.size.height-113) collectionViewLayout:flowLayout];
+        UICollectionView *collec = [[UICollectionView alloc] initWithFrame:CGRectMake(i*SCREENW, 0, SCREENW, SCREENH-_btnListView.frame.size.height-113) collectionViewLayout:flowLayout];
         collec.backgroundColor = [UIColor whiteColor];
         collec.delegate = self;
         collec.dataSource = self;
@@ -410,7 +430,27 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _collectionDataArray.count;
+    if([collectionView isEqual:self.collectionView1])
+    {
+        return _collection1DataArray.count;
+    }
+    if([collectionView isEqual:self.collectionView2])
+    {
+        return _collection2DataArray.count;
+    }
+    if([collectionView isEqual:self.collectionView3])
+    {
+        return _collection3DataArray.count;
+    }
+    if([collectionView isEqual:self.collectionView4])
+    {
+        return _collection4DataArray.count;
+    }
+    if([collectionView isEqual:self.collectionView5])
+    {
+        return _collection5DataArray.count;
+    }
+    return 0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -565,6 +605,34 @@
     return CGSizeZero;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CollectionModel *model = [[CollectionModel alloc] init];
+    if([collectionView isEqual:self.collectionView1])
+    {
+        model = _collection1DataArray[indexPath.item];
+    }
+    if([collectionView isEqual:self.collectionView2])
+    {
+        model = _collection2DataArray[indexPath.item];
+    }
+    if([collectionView isEqual:self.collectionView3])
+    {
+        model = _collection3DataArray[indexPath.item];
+    }
+    if([collectionView isEqual:self.collectionView4])
+    {
+        model = _collection4DataArray[indexPath.item];
+    }
+    if([collectionView isEqual:self.collectionView5])
+    {
+        model = _collection5DataArray[indexPath.item];
+    }
+    WebView *webView = [[WebView alloc] init];
+    webView.strUrl = model.content_url;
+    webView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:webView animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
