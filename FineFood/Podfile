@@ -1,0 +1,4 @@
+target "FineFood" do
+    pod 'JSONModel'
+    pod 'SDWebImage'
+end
