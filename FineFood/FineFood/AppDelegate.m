@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "CreateTabBar.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UITabBarDelegate,UITabBarControllerDelegate>
 
 @end
 
@@ -19,9 +19,20 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    _window.rootViewController = [CreateTabBar createTabBarControllerWithTitle:@[@"One",@"Two",@"Three",@"Four"] andClassNameArray:@[@"One",@"Two",@"Three",@"Four"] andImageArray:@[[UIImage imageNamed:@"tabBar.jpeg"],[UIImage imageNamed:@"tabBar.jpeg"],[UIImage imageNamed:@"tabBar.jpeg"],[UIImage imageNamed:@"tabBar.jpeg"]] andSuffix:@"VC"];;
+    UITabBarController *tabBar = [CreateTabBar createTabBarControllerWithTitle:@[@"One",@"Two",@"Three",@"Four"] andClassNameArray:@[@"One",@"Two",@"Three",@"Four"] andImageArray:@[[UIImage imageNamed:@"tabBar.jpeg"],[UIImage imageNamed:@"tabBar.jpeg"],[UIImage imageNamed:@"tabBar.jpeg"],[UIImage imageNamed:@"tabBar.jpeg"]] andSuffix:@"VC"];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    tabBar.selectedIndex = [ud integerForKey:@"select"];
+    tabBar.delegate = self;
+    _window.rootViewController = tabBar;
     [_window makeKeyAndVisible];
     return YES;
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setInteger:tabBarController.selectedIndex forKey:@"select"];
+    [ud synchronize];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

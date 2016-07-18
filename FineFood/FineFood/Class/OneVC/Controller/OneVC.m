@@ -125,6 +125,9 @@
     {
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(i*SCREENW/5, 0, SCREENW/5, 30)];
         [btn setTitle:btnTitle[i] forState:UIControlStateNormal];
+        
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:0.045*SCREENW]];
+        
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.backgroundColor = [UIColor greenColor];
         btn.tag = 20+i;
@@ -376,6 +379,7 @@
     }
 }
 
+#pragma mark 请求数据
 - (void)getCollectionData:(NSString *)urlStr
 {
     [HTTPServiceSession serviceSessionWithUrlStr:urlStr andDataBlock:^(NSData *receiveData, NSError *error) {

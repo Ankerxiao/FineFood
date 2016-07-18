@@ -10,4 +10,5 @@
 
 @interface WebView : UIViewController
 @property (nonatomic,copy) NSString *strUrl;
+@property (nonatomic,strong) NSDictionary *dictionary;
 @end
