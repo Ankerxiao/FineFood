@@ -20,12 +20,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FineFood/Class/ThreeVC/Controller/ThreeVC.m"
-            timestampString = "490580783.520717"
+            timestampString = "490623237.404545"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "-getData:"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "-pressImage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

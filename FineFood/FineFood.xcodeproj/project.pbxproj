@@ -29,6 +29,10 @@
 		B8C368011D3A3B8A00C94890 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C368001D3A3B8A00C94890 /* DataModel.m */; };
 		B8C368041D3A3C5300C94890 /* DataModelTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C368031D3A3C5300C94890 /* DataModelTarget.m */; };
 		B8C368071D3A405A00C94890 /* HTTPServiceSession.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C368061D3A405A00C94890 /* HTTPServiceSession.m */; };
+		B8E4275D1D3E437B004FBC65 /* ThreeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E4275B1D3E437B004FBC65 /* ThreeDetailVC.m */; };
+		B8E4275E1D3E437B004FBC65 /* ThreeDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8E4275C1D3E437B004FBC65 /* ThreeDetailVC.xib */; };
+		B8E427611D3E4EE1004FBC65 /* AllTitleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E427601D3E4EE1004FBC65 /* AllTitleVC.m */; };
+		B8E427641D3E558C004FBC65 /* ThreeCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E427631D3E558C004FBC65 /* ThreeCollectionVC.m */; };
 		B8F3E2F21D3C543F001DE966 /* TwoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F3E2F11D3C543F001DE966 /* TwoModel.m */; };
 		B8F3E2F61D3C56F7001DE966 /* TwoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F3E2F41D3C56F7001DE966 /* TwoCollectionCell.m */; };
 		B8F3E2F71D3C56F7001DE966 /* TwoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F3E2F51D3C56F7001DE966 /* TwoCollectionCell.xib */; };
@@ -74,6 +78,13 @@
 		B8C368031D3A3C5300C94890 /* DataModelTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelTarget.m; sourceTree = "<group>"; };
 		B8C368051D3A405A00C94890 /* HTTPServiceSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPServiceSession.h; sourceTree = "<group>"; };
 		B8C368061D3A405A00C94890 /* HTTPServiceSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPServiceSession.m; sourceTree = "<group>"; };
+		B8E4275A1D3E437B004FBC65 /* ThreeDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeDetailVC.h; sourceTree = "<group>"; };
+		B8E4275B1D3E437B004FBC65 /* ThreeDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreeDetailVC.m; sourceTree = "<group>"; };
+		B8E4275C1D3E437B004FBC65 /* ThreeDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeDetailVC.xib; sourceTree = "<group>"; };
+		B8E4275F1D3E4EE1004FBC65 /* AllTitleVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTitleVC.h; sourceTree = "<group>"; };
+		B8E427601D3E4EE1004FBC65 /* AllTitleVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTitleVC.m; sourceTree = "<group>"; };
+		B8E427621D3E558C004FBC65 /* ThreeCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeCollectionVC.h; sourceTree = "<group>"; };
+		B8E427631D3E558C004FBC65 /* ThreeCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreeCollectionVC.m; sourceTree = "<group>"; };
 		B8F3E2F01D3C543F001DE966 /* TwoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoModel.h; sourceTree = "<group>"; };
 		B8F3E2F11D3C543F001DE966 /* TwoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoModel.m; sourceTree = "<group>"; };
 		B8F3E2F31D3C56F7001DE966 /* TwoCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoCollectionCell.h; sourceTree = "<group>"; };
@@ -287,6 +298,13 @@
 			children = (
 				B8C367F31D3A36A400C94890 /* ThreeVC.h */,
 				B8C367F41D3A36A400C94890 /* ThreeVC.m */,
+				B8E4275F1D3E4EE1004FBC65 /* AllTitleVC.h */,
+				B8E427601D3E4EE1004FBC65 /* AllTitleVC.m */,
+				B8E427621D3E558C004FBC65 /* ThreeCollectionVC.h */,
+				B8E427631D3E558C004FBC65 /* ThreeCollectionVC.m */,
+				B8E4275A1D3E437B004FBC65 /* ThreeDetailVC.h */,
+				B8E4275B1D3E437B004FBC65 /* ThreeDetailVC.m */,
+				B8E4275C1D3E437B004FBC65 /* ThreeDetailVC.xib */,
 				B8C367F51D3A36A400C94890 /* ThreeVC.xib */,
 			);
 			path = Controller;
@@ -395,6 +413,7 @@
 			files = (
 				B8C367FE1D3A375500C94890 /* tabBar.jpeg in Resources */,
 				B8C367ED1D3A367700C94890 /* FourVC.xib in Resources */,
+				B8E4275E1D3E437B004FBC65 /* ThreeDetailVC.xib in Resources */,
 				B8C367FC1D3A36B700C94890 /* TwoVC.xib in Resources */,
 				B8C367CD1D3A337500C94890 /* LaunchScreen.storyboard in Resources */,
 				B8F3E2F71D3C56F7001DE966 /* TwoCollectionCell.xib in Resources */,
@@ -466,16 +485,19 @@
 				B8F3E2F61D3C56F7001DE966 /* TwoCollectionCell.m in Sources */,
 				B8C367C51D3A337500C94890 /* ViewController.m in Sources */,
 				B8C367F61D3A36A400C94890 /* ThreeVC.m in Sources */,
+				B8E427641D3E558C004FBC65 /* ThreeCollectionVC.m in Sources */,
 				B8C368011D3A3B8A00C94890 /* DataModel.m in Sources */,
 				B8C367D81D3A356D00C94890 /* CreateTabBar.m in Sources */,
 				B851A3681D3BADA60080E5DB /* WebView.m in Sources */,
 				B8F3E3001D3D0396001DE966 /* ThreeModel.m in Sources */,
 				B8C367C21D3A337500C94890 /* AppDelegate.m in Sources */,
+				B8E4275D1D3E437B004FBC65 /* ThreeDetailVC.m in Sources */,
 				B8C367F11D3A368900C94890 /* OneVC.m in Sources */,
 				B8C367FB1D3A36B700C94890 /* TwoVC.m in Sources */,
 				B8C367EC1D3A367700C94890 /* FourVC.m in Sources */,
 				B851A3621D3B1FF70080E5DB /* ScrollViewDetailOneVC.m in Sources */,
 				B8C367BF1D3A337500C94890 /* main.m in Sources */,
+				B8E427611D3E4EE1004FBC65 /* AllTitleVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

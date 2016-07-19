@@ -31,6 +31,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationController.navigationBar.barTintColor = [UIColor brownColor];//设置导航栏颜色
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];//设置标题颜色
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;//设置状态栏的颜色(前景色)为白色
     
     [self.view addSubview:self.collectionView];
     

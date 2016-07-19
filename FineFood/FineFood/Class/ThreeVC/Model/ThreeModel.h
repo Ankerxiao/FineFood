@@ -10,4 +10,6 @@
 
 @interface ThreeModel : JSONModel
 @property (nonatomic,copy) NSString *icon_url;
+@property (nonatomic,copy) NSString *identifier;
+
 @end

@@ -11,6 +11,8 @@
 #import <UIImageView+WebCache.h>
 #import "DataModelTarget.h"
 #import "ThreeModel.h"
+#import "ThreeDetailVC.h"
+#import "AllTitleVC.h"
 
 
 #define SCREENW [UIScreen mainScreen].bounds.size.width
@@ -37,6 +39,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.navigationController.navigationBar.barTintColor = [UIColor brownColor];//设置导航栏颜色
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];//设置标题颜色
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;//设置状态栏的颜色(前景色)为白色
     
     //成员变量的初始化
     _topViewArray = [NSMutableArray array];
@@ -131,6 +137,7 @@
     [btn setTitle:@"查看全部>" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [btn addTarget:self action:@selector(pressBtn) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:btn];
     
     _topScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(btn.frame)+10, SCREENW, 80)];
@@ -138,6 +145,15 @@
     [backView addSubview:_topScrollView];
     
     [_scrollView addSubview:backView];
+}
+
+- (void)pressBtn
+{
+    //推出一个ViewController
+    AllTitleVC *vc = [[AllTitleVC alloc] init];
+    vc.dataArray = _topViewArray;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (void)updateTopScrollView
@@ -178,27 +194,98 @@
 
 - (void)updateChannelOne
 {
+//    _backOneView.userInteractionEnabled = YES;
     NSInteger count = _channel1Array.count;
     for(int i=0;i<count;i++)
     {
         ThreeModel *model = _channel1Array[i]; //程序运行多次，在此会崩溃，数组元素为空
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(5+i*SCREENW/4, 40, SCREENW/4-10, SCREENW/4-10)];
+        imageV.userInteractionEnabled = YES;
         [imageV sd_setImageWithURL:[NSURL URLWithString:model.icon_url]];
         imageV.layer.cornerRadius = 10;
         imageV.layer.masksToBounds = YES;
+        imageV.tag = 10+i;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+        [tap addTarget:self action:@selector(pressImage:)];
+        [imageV addGestureRecognizer:tap];
         [_backOneView addSubview:imageV];
     }
+}
+
+- (void)pressImage:(UITapGestureRecognizer *)tap
+{
+    UIView *vw = tap.view;
+    ThreeModel *model = _channel1Array[vw.tag-10];
+    ThreeDetailVC *tdvc = [[ThreeDetailVC alloc] init];
+    tdvc.identifier = model.identifier;
+    [self.navigationController pushViewController:tdvc animated:YES];
 }
 
 #pragma mark 频道二
 - (void)createChannelTwo
 {
+    _backTwoView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_backOneView.frame)+10, SCREENW, 320)];
+    _backTwoView.backgroundColor = [UIColor redColor];
     
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, SCREENW, 30)];
+    label.text = @"出门";
+    [_backTwoView addSubview:label];
+    
+    NSArray *titleArr = @[@"周末逛店",@"体验课",@"周边游",@"尝美食",@"酒吧",@"休闲"];
+    NSInteger count = titleArr.count;
+    for(int i=0;i<count;i++)
+    {
+        NSInteger line = i%4;
+        NSInteger row = i/4;
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(15+line*(SCREENW/4+10), 135+row*(SCREENW/4+30),SCREENW/4,20)];
+//        title.textAlignment = NSTextAlignmentCenter;
+        if(i == 2)
+        {
+            title.frame = CGRectMake(5+line*(SCREENW/4+10), 135+row*(SCREENW/4+30),SCREENW/4,20);
+        }
+        if(i == 3)
+        {
+            title.frame = CGRectMake(line*(SCREENW/4+10)-5, 135+row*(SCREENW/4+30),SCREENW/4,20);
+        }
+        if(i == 4 || i == 5)
+        {
+            title.frame = CGRectMake(line*(SCREENW/4+10)+25, 135+row*(SCREENW/4+30),SCREENW/4,20);
+        }
+        title.text = titleArr[i];
+        [_backTwoView addSubview:title];
+    }
+    _scrollView.contentSize = CGSizeMake(SCREENW, CGRectGetMaxY(_backTwoView.frame)+10);
+    [_scrollView addSubview:_backTwoView];
 }
 
 - (void)updateChannelTwo
 {
-    
+    NSInteger count = _channel2Array.count;
+    for(int i=0;i<count;i++)
+    {
+        NSInteger line = i%4;
+        NSInteger row = i/4;
+        ThreeModel *model = _channel2Array[i]; //程序运行多次，在此会崩溃，数组元素为空
+        UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(5+line*SCREENW/4, 40+row*(SCREENW/4+30), SCREENW/4-10, SCREENW/4-10)];
+        imageV.userInteractionEnabled = YES;
+        [imageV sd_setImageWithURL:[NSURL URLWithString:model.icon_url]];
+        imageV.layer.cornerRadius = 10;
+        imageV.layer.masksToBounds = YES;
+        imageV.tag = 20+i;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+        [tap addTarget:self action:@selector(pressImageTwo:)];
+        [imageV addGestureRecognizer:tap];
+        [_backTwoView addSubview:imageV];
+    }
+}
+
+- (void)pressImageTwo:(UITapGestureRecognizer *)tap
+{
+    UIView *vw = tap.view;
+    ThreeModel *model = _channel2Array[vw.tag-20];
+    ThreeDetailVC *tdvc = [[ThreeDetailVC alloc] init];
+    tdvc.identifier = model.identifier;
+    [self.navigationController pushViewController:tdvc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

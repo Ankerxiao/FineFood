@@ -14,4 +14,6 @@
 @property (nonatomic,copy) NSString <Optional> *created_at;
 @property (nonatomic,copy) NSString <Optional> *likes_count;
 @property (nonatomic,copy) NSString <Optional> *title;
+@property (nonatomic,copy) NSString <Optional> *identifier;
+@property (nonatomic,copy) NSString <Optional> *url;
 @end

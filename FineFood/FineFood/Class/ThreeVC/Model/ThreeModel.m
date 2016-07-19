@@ -11,7 +11,7 @@
 @implementation ThreeModel
 + (JSONKeyMapper *)keyMapper
 {
-    JSONKeyMapper *mapper = [[JSONKeyMapper alloc] initWithDictionary:@{}];
+    JSONKeyMapper *mapper = [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"identifier"}];
     return mapper;
 }
 @end
