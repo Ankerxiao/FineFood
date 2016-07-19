@@ -9,5 +9,5 @@
 #import <JSONModel/JSONModel.h>
 
 @interface ThreeModel : JSONModel
-
+@property (nonatomic,copy) NSString *icon_url;
 @end

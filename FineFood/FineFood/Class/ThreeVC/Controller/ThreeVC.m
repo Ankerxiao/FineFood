@@ -10,6 +10,7 @@
 #import "HTTPServiceSession.h"
 #import <UIImageView+WebCache.h>
 #import "DataModelTarget.h"
+#import "ThreeModel.h"
 
 
 #define SCREENW [UIScreen mainScreen].bounds.size.width
@@ -21,9 +22,13 @@
 @interface ThreeVC () <UIScrollViewDelegate>
 {
     NSMutableArray *_topViewArray;
+    NSMutableArray *_channel1Array;
+    NSMutableArray *_channel2Array;
 }
 @property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) UIScrollView *topScrollView;
+@property (nonatomic,strong) UIView *backOneView;
+@property (nonatomic,strong) UIView *backTwoView;
 @end
 
 @implementation ThreeVC
@@ -35,17 +40,22 @@
     
     //成员变量的初始化
     _topViewArray = [NSMutableArray array];
+    _channel1Array = [NSMutableArray array];
+    _channel2Array = [NSMutableArray array];
     
     [self initScrollView];
     
     
     [self getData:COLLECTION_API];
+    [self getData:CHANNELS_API];
 }
 
 #pragma mark 请求数据
 - (void)getData:(NSString *)urlStr
 {
     [HTTPServiceSession serviceSessionWithUrlStr:urlStr andDataBlock:^(NSData *receiveData, NSError *error) {
+        
+        //topScrollView
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:receiveData options:NSJSONReadingAllowFragments error:nil];
         NSArray *tempArray = dictionary[@"data"][@"collections"];
         NSMutableArray *tempMu = [NSMutableArray array];
@@ -57,6 +67,34 @@
         _topViewArray = tempMu;
         dispatch_async(dispatch_get_main_queue(),^{
             [self updateTopScrollView];
+        });
+        
+        //频道图片
+        NSDictionary *dictionary2 = [NSJSONSerialization JSONObjectWithData:receiveData options:NSJSONReadingAllowFragments error:nil];
+        NSArray *allChannel = dictionary2[@"data"][@"channel_groups"];
+        NSDictionary *dict1 = allChannel[0];
+        NSDictionary *dict2 = allChannel[1];
+        NSArray *array1 = dict1[@"channels"];
+        NSArray *array2 = dict2[@"channels"];
+        
+        NSMutableArray *tempChannel1 = [NSMutableArray array];
+        for(NSDictionary *dic1 in array1)
+        {
+            ThreeModel *model = [[ThreeModel alloc] initWithDictionary:dic1 error:nil];
+            [tempChannel1 addObject:model];
+        }
+        _channel1Array = tempChannel1;
+        
+        NSMutableArray *tempChannel2 = [NSMutableArray array];
+        for(NSDictionary *dic2 in array2)
+        {
+            ThreeModel *model = [[ThreeModel alloc] initWithDictionary:dic2 error:nil];
+            [tempChannel2 addObject:model];
+        }
+        _channel2Array = tempChannel2;
+        dispatch_async(dispatch_get_main_queue(),^{
+            [self updateChannelOne];
+            [self updateChannelTwo];
         });
     }];
     
@@ -120,11 +158,45 @@
 #pragma mark 频道一
 - (void)createChannelOne
 {
+    _backOneView = [[UIView alloc] initWithFrame:CGRectMake(0, 150, SCREENW, 160)];
+    _backOneView.backgroundColor = [UIColor redColor];
     
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, SCREENW, 30)];
+    label.text = @"宅家";
+    [_backOneView addSubview:label];
+    
+    NSArray *titleArr = @[@"DIY",@"下厨",@"电影",@"聚会"];
+    for(int i=0;i<4;i++)
+    {
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(30+i*SCREENW/4, 135,SCREENW/4,20)];
+        title.text = titleArr[i];
+        [_backOneView addSubview:title];
+    }
+    
+    [_scrollView addSubview:_backOneView];
+}
+
+- (void)updateChannelOne
+{
+    NSInteger count = _channel1Array.count;
+    for(int i=0;i<count;i++)
+    {
+        ThreeModel *model = _channel1Array[i]; //程序运行多次，在此会崩溃，数组元素为空
+        UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(5+i*SCREENW/4, 40, SCREENW/4-10, SCREENW/4-10)];
+        [imageV sd_setImageWithURL:[NSURL URLWithString:model.icon_url]];
+        imageV.layer.cornerRadius = 10;
+        imageV.layer.masksToBounds = YES;
+        [_backOneView addSubview:imageV];
+    }
 }
 
 #pragma mark 频道二
 - (void)createChannelTwo
+{
+    
+}
+
+- (void)updateChannelTwo
 {
     
 }
