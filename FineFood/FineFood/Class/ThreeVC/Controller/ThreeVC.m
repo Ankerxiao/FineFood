@@ -13,6 +13,8 @@
 #import "ThreeModel.h"
 #import "ThreeDetailVC.h"
 #import "AllTitleVC.h"
+#import "ThreeDetailVC.h"
+#import "ThreeCollectionVC.h"
 
 
 #define SCREENW [UIScreen mainScreen].bounds.size.width
@@ -26,6 +28,8 @@
     NSMutableArray *_topViewArray;
     NSMutableArray *_channel1Array;
     NSMutableArray *_channel2Array;
+    
+    NSArray *_topArray;
 }
 @property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) UIScrollView *topScrollView;
@@ -48,6 +52,7 @@
     _topViewArray = [NSMutableArray array];
     _channel1Array = [NSMutableArray array];
     _channel2Array = [NSMutableArray array];
+    _topArray = [NSMutableArray array];
     
     [self initScrollView];
     
@@ -59,6 +64,7 @@
 #pragma mark 请求数据
 - (void)getData:(NSString *)urlStr
 {
+    NSLog(@"%@",urlStr);
     [HTTPServiceSession serviceSessionWithUrlStr:urlStr andDataBlock:^(NSData *receiveData, NSError *error) {
         
         //topScrollView
@@ -71,6 +77,7 @@
             [tempMu addObject:model];
         }
         _topViewArray = tempMu;
+        _topArray = tempMu;
         dispatch_async(dispatch_get_main_queue(),^{
             [self updateTopScrollView];
         });
@@ -162,13 +169,30 @@
     for(int i=0;i<count;i++)
     {
         DataModelTarget *model = _topViewArray[i];
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        [ud setObject:model.identifier forKey:[NSString stringWithFormat:@"id%d",i]];
+        [ud synchronize];
         UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(10+i*(SCREENW/2+10), 0, SCREENW/2, 80)];
         [imageV sd_setImageWithURL:[NSURL URLWithString:model.banner_image_url]];
         imageV.layer.cornerRadius = 10;
         imageV.layer.masksToBounds = YES;
+        imageV.userInteractionEnabled = YES;
+        imageV.tag = 50+i;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+        [tap addTarget:self action:@selector(tapTopView:)];
+        [imageV addGestureRecognizer:tap];
         [_topScrollView addSubview:imageV];
     }
     _topScrollView.contentSize = CGSizeMake(2*SCREENW+50, 0);
+}
+
+- (void)tapTopView:(UITapGestureRecognizer *)tap
+{
+//    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    ThreeCollectionVC *vc = [[ThreeCollectionVC alloc] init];
+//    DataModelTarget *model = _topArray[tap.view.tag-50];
+    vc.str = [NSString stringWithFormat:@"%ld",tap.view.tag-50];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark 频道一

@@ -51,6 +51,7 @@
 - (void)getData
 {
     NSString *urlStr = [NSString stringWithFormat:DETAIL_API,self.identifier];
+    NSLog(@"%@",urlStr);
     [HTTPServiceSession serviceSessionWithUrlStr:urlStr andDataBlock:^(NSData *receiveData, NSError *error) {
         NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:receiveData options:NSJSONReadingAllowFragments error:nil];
         NSArray *array = dictionary[@"data"][@"items"];

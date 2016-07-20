@@ -1,48 +1,49 @@
 //
-//  FourVC.m
+//  LoginVC.m
 //  FineFood
 //
-//  Created by Anker Xiao on 16/7/16.
+//  Created by Anker Xiao on 16/7/20.
 //  Copyright © 2016年 AnkerXiao. All rights reserved.
 //
 
-#import "FourVC.h"
 #import "LoginVC.h"
 
-@interface FourVC ()
+@interface LoginVC ()
+@property (weak, nonatomic) IBOutlet UITextField *numberL;
+@property (weak, nonatomic) IBOutlet UITextField *passwordL;
 
 @end
 
-@implementation FourVC
+@implementation LoginVC
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    
-    
-    
 }
 
-- (IBAction)pressLoginBtn:(id)sender
+- (IBAction)cancelBtn:(id)sender
 {
-    //需要判断当前是否已经登录
-    
-    //已登录，处理下面事情
-    
-    
-    
-    //未登录，处理下面事情
-    LoginVC *lvc = [[LoginVC alloc] init];
-    [self presentViewController:lvc animated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-- (void)presentLoginVC
-{
-    
+- (IBAction)registerBtn:(id)sender {
 }
+
+- (IBAction)loginBtn:(id)sender {
+}
+
+- (IBAction)forgetPass:(id)sender {
+}
+
+- (IBAction)weiBo:(id)sender {
+}
+
+- (IBAction)weiXin:(id)sender {
+}
+
+- (IBAction)qq:(id)sender {
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

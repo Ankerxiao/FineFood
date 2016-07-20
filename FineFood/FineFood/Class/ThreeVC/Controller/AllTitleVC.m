@@ -74,10 +74,9 @@
     [label setFont:[UIFont systemFontOfSize:30]];
     label.textColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
-    [imageV addSubview:label];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundView = imageV;
-//    cell.backgroundView
+    [cell.backgroundView addSubview:label];
     return cell;
 }
 

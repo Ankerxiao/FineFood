@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		993B026A9C608A4841089914 /* libPods-FineFood.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7EC5341668CB0D7F70CB42 /* libPods-FineFood.a */; };
+		B801F7921D3FA1D200F11EB0 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B801F7901D3FA1D200F11EB0 /* LoginVC.m */; };
+		B801F7931D3FA1D200F11EB0 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B801F7911D3FA1D200F11EB0 /* LoginVC.xib */; };
+		B801F7971D3FA4CC00F11EB0 /* account_icon_qq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B801F7941D3FA4CC00F11EB0 /* account_icon_qq@2x.png */; };
+		B801F7981D3FA4CC00F11EB0 /* account_icon_weibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B801F7951D3FA4CC00F11EB0 /* account_icon_weibo@2x.png */; };
+		B801F7991D3FA4CC00F11EB0 /* account_icon_weixin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B801F7961D3FA4CC00F11EB0 /* account_icon_weixin@2x.png */; };
+		B801F79C1D3FAA2600F11EB0 /* user_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B801F79A1D3FAA2600F11EB0 /* user_icon@2x.png */; };
+		B801F79D1D3FAA2600F11EB0 /* user_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B801F79B1D3FAA2600F11EB0 /* user_icon@3x.png */; };
 		B851A3621D3B1FF70080E5DB /* ScrollViewDetailOneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B851A3611D3B1FF70080E5DB /* ScrollViewDetailOneVC.m */; };
 		B851A3651D3B2D270080E5DB /* CollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B851A3641D3B2D270080E5DB /* CollectionModel.m */; };
 		B851A3681D3BADA60080E5DB /* WebView.m in Sources */ = {isa = PBXBuildFile; fileRef = B851A3671D3BADA60080E5DB /* WebView.m */; };
@@ -42,6 +49,14 @@
 /* Begin PBXFileReference section */
 		2C7EC5341668CB0D7F70CB42 /* libPods-FineFood.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FineFood.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D2781BFB6F28D0677897114 /* Pods-FineFood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineFood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FineFood/Pods-FineFood.debug.xcconfig"; sourceTree = "<group>"; };
+		B801F78F1D3FA1D200F11EB0 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
+		B801F7901D3FA1D200F11EB0 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		B801F7911D3FA1D200F11EB0 /* LoginVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
+		B801F7941D3FA4CC00F11EB0 /* account_icon_qq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account_icon_qq@2x.png"; sourceTree = "<group>"; };
+		B801F7951D3FA4CC00F11EB0 /* account_icon_weibo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account_icon_weibo@2x.png"; sourceTree = "<group>"; };
+		B801F7961D3FA4CC00F11EB0 /* account_icon_weixin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "account_icon_weixin@2x.png"; sourceTree = "<group>"; };
+		B801F79A1D3FAA2600F11EB0 /* user_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_icon@2x.png"; sourceTree = "<group>"; };
+		B801F79B1D3FAA2600F11EB0 /* user_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_icon@3x.png"; sourceTree = "<group>"; };
 		B851A3601D3B1FF70080E5DB /* ScrollViewDetailOneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewDetailOneVC.h; sourceTree = "<group>"; };
 		B851A3611D3B1FF70080E5DB /* ScrollViewDetailOneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewDetailOneVC.m; sourceTree = "<group>"; };
 		B851A3631D3B2D270080E5DB /* CollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionModel.h; sourceTree = "<group>"; };
@@ -332,6 +347,14 @@
 				B8C367E91D3A367700C94890 /* FourVC.h */,
 				B8C367EA1D3A367700C94890 /* FourVC.m */,
 				B8C367EB1D3A367700C94890 /* FourVC.xib */,
+				B801F78F1D3FA1D200F11EB0 /* LoginVC.h */,
+				B801F7901D3FA1D200F11EB0 /* LoginVC.m */,
+				B801F7911D3FA1D200F11EB0 /* LoginVC.xib */,
+				B801F7941D3FA4CC00F11EB0 /* account_icon_qq@2x.png */,
+				B801F7951D3FA4CC00F11EB0 /* account_icon_weibo@2x.png */,
+				B801F7961D3FA4CC00F11EB0 /* account_icon_weixin@2x.png */,
+				B801F79A1D3FAA2600F11EB0 /* user_icon@2x.png */,
+				B801F79B1D3FAA2600F11EB0 /* user_icon@3x.png */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -411,13 +434,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B801F7981D3FA4CC00F11EB0 /* account_icon_weibo@2x.png in Resources */,
+				B801F7931D3FA1D200F11EB0 /* LoginVC.xib in Resources */,
 				B8C367FE1D3A375500C94890 /* tabBar.jpeg in Resources */,
+				B801F7971D3FA4CC00F11EB0 /* account_icon_qq@2x.png in Resources */,
+				B801F79D1D3FAA2600F11EB0 /* user_icon@3x.png in Resources */,
 				B8C367ED1D3A367700C94890 /* FourVC.xib in Resources */,
 				B8E4275E1D3E437B004FBC65 /* ThreeDetailVC.xib in Resources */,
+				B801F79C1D3FAA2600F11EB0 /* user_icon@2x.png in Resources */,
 				B8C367FC1D3A36B700C94890 /* TwoVC.xib in Resources */,
 				B8C367CD1D3A337500C94890 /* LaunchScreen.storyboard in Resources */,
 				B8F3E2F71D3C56F7001DE966 /* TwoCollectionCell.xib in Resources */,
 				B8C367CA1D3A337500C94890 /* Assets.xcassets in Resources */,
+				B801F7991D3FA4CC00F11EB0 /* account_icon_weixin@2x.png in Resources */,
 				B8C367C81D3A337500C94890 /* Main.storyboard in Resources */,
 				B8C367F71D3A36A400C94890 /* ThreeVC.xib in Resources */,
 			);
@@ -483,6 +512,7 @@
 				B8F3E2F21D3C543F001DE966 /* TwoModel.m in Sources */,
 				B851A3651D3B2D270080E5DB /* CollectionModel.m in Sources */,
 				B8F3E2F61D3C56F7001DE966 /* TwoCollectionCell.m in Sources */,
+				B801F7921D3FA1D200F11EB0 /* LoginVC.m in Sources */,
 				B8C367C51D3A337500C94890 /* ViewController.m in Sources */,
 				B8C367F61D3A36A400C94890 /* ThreeVC.m in Sources */,
 				B8E427641D3E558C004FBC65 /* ThreeCollectionVC.m in Sources */,
